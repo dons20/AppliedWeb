@@ -3,8 +3,11 @@
 require_once 'connection.php';
  
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = "";
+//$username = $password = $confirm_password = $first_name = $last_name = "";
+//$username_err = $password_err = $confirm_password_err = $first_name_err = $last_name_err = "";
+//$gender = 'M';
+//$age = 0;
+//$date = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -26,8 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT username, password FROM users WHERE username = :username";
-        
+        $sql = "SELECT username, password, FROM doctor_office WHERE username = :username";
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(':username', $param_username, PDO::PARAM_STR);
@@ -46,7 +48,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             save the username to the session */
                             session_start();
                             $_SESSION['username'] = $username;      
-                            header("location: welcome.php");
+                            echo $username;
+                            echo $username;
+                            echo $username;
+                            echo $username;
+                            welcome();
+                            //header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
@@ -67,5 +74,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     unset($pdo);
+}
+
+function welcome() {
+    // Initialize the session
+    //session_start();
+    
+    // If session variable is not set it will redirect to login page
+    if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+        header("location: login.php");
+    exit;
+    }
 }
 ?>

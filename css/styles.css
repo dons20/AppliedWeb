@@ -29,6 +29,34 @@ body {
 .card {
     height: 100%;
 }
+
+.form-group {
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.form-group label {
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.form-control:focus ~ label, .form-control:valid ~ label{
+    color: #222;
+    font-size: 14px;
+    top: -20px;
+}
 .modal-login {		
     color: #636363;
     width: 350px;
@@ -54,6 +82,13 @@ body {
 .modal-login .form-control:focus {
     border-color: #70c5c0;
 }
+.modal-login .form-control:valid {
+    box-shadow: 0 0 0 0.2rem rgba(63, 247, 46, 0.75);
+}
+/*.modal-login .form-control:invalid {
+    box-shadow: 0 0 0 0.2rem rgba(63, 247, 46, 0.75);
+    border-color: rgba(247, 46, 46, 0.75);
+}*/
 .modal-login .form-control, .modal-login .btn {
     min-height: 40px;
     border-radius: 3px; 
