@@ -1,7 +1,3 @@
-<?php
-    include 'php/registration.php';
-    include 'php/login.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -156,11 +152,11 @@
                     <button id="loginClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <form method="post">
+                        <div class="form-group">
                             <input type="text" class="form-control" name="username" placeholder="Username" required="required">		
                         </div>
-                        <div class="form- <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        <div class="form-group">
                             <input type="password" class="form-control" name="password" placeholder="Password" required="required">	
                         </div>        
                         <div class="form-group">
@@ -187,26 +183,26 @@
                     <button id="regClose" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" class="form-control" name="username" required value="<?php echo $username; ?>">		
-                            <span class="help-block"><?php echo $username_err; ?></span>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" required>		
+                            <!-- <span class="help-block"></span> -->
                             <label>Username</label>
                         </div>
-                        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                            <input type="password" class="form-control" name="password" required value="<?php echo $password; ?>">
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" required>
                             <label>Password</label>	
                         </div>      
-                        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                            <input type="password" class="form-control" name="confirm_password" required value="<?php echo $confirm_password; ?>">	
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="confirm_password" required>	
                             <label>Confirm Password</label>
                         </div>
-                        <div class="form-group  <?php echo (!empty($first_name_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" class="form-control" name="first_name" required value="<?php echo $first_name; ?>">		
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="first_name" required>		
                             <label>First Name</label>
                         </div>      
-                        <div class="form-group  <?php echo (!empty($last_name_err)) ? 'has-error' : ''; ?>">
-                            <input type="text" class="form-control" name="last_name" required value="<?php echo $last_name; ?>">	
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="last_name" required>	
                             <label>Last Name</label>
                         </div>      
                         <div class="form-group">

@@ -1,15 +1,17 @@
 $(document).ready(function() {
     var $rform =  $('#registrationForm form');
     var $lform =  $('#loginForm form');
+    var session;
     $rform.on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             type:       "POST",
             cache:      false,
-            url:        $(this).attr('action'),
+            url:        '/php/registration.php',
             data:       $(this).serialize(),
             success:    function(data) {
                 $('#regClose').trigger('click');
+                console.log(data);
             }
         });
     });
@@ -18,12 +20,14 @@ $(document).ready(function() {
         $.ajax({
             type:       "POST",
             cache:      false,
-            url:        $(this).attr('action'),
+            url:        '/php/login.php',
             data:       $(this).serialize(),
             success:    function(data) {
                 $('#loginClose').trigger('click');
-                console.log(data);
+                session = data['username'];
+                console.log(session);
             }
         });
     });
-})
+});
+

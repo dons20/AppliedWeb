@@ -53,29 +53,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate confirm password
     //if (empty($confirm_password)) $confirm_password = '';
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = 'Please confirm password.';     
-    } else{
-        $confirm_password = trim($_POST['confirm_password']);
-        if($password != $confirm_password){
-            $confirm_password_err = 'Password did not match.';
+    if (isset($_POST["confirm_password"]))
+    {
+        if(empty(trim($_POST["confirm_password"]))){
+            $confirm_password_err = 'Please confirm password.';     
+        } else{
+            $confirm_password = trim($_POST['confirm_password']);
+            if($password != $confirm_password){
+                $confirm_password_err = 'Password did not match.';
+            }
         }
+    } else {
+        $confirm_password = null;
     }
 
     // Validate first name
     //if (empty($first_name)) $first_name = '';
-    if(empty(trim($_POST['first_name']))){
-        $first_name_err = "Please enter your first name.";     
-    } else{
-        $first_name = trim($_POST['first_name']);
+    if (isset($_POST["first_name"]))
+    {    
+        if(empty(trim($_POST['first_name']))){
+            $first_name_err = "Please enter your first name.";     
+        } else{
+            $first_name = trim($_POST['first_name']);
+        }
+    } else {
+        $first_name = null;
     }
 
     // Validate last name
     //if (empty($last_name)) $last_name = '';
-    if(empty(trim($_POST['last_name']))){
-        $last_name_err = "Please enter your last name.";     
-    } else{
-        $last_name = trim($_POST['last_name']);
+    if (isset($_POST["last_name"]))
+    {    
+        if(empty(trim($_POST['last_name']))){
+            $last_name_err = "Please enter your last name.";     
+        } else{
+            $last_name = trim($_POST['last_name']);
+        }
+    } else {
+        $last_name = null;
     }
     
     // Check input errors before inserting in database

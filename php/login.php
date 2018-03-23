@@ -1,10 +1,11 @@
 <?php
 // Include config file
 require_once 'connection.php';
+header('Content: application/json', 1);
  
 // Define variables and initialize with empty values
-//$username = $password = $confirm_password = $first_name = $last_name = "";
-//$username_err = $password_err = $confirm_password_err = $first_name_err = $last_name_err = "";
+$username = $password = "";
+$username_err = $password_err = "";
 //$gender = 'M';
 //$age = 0;
 //$date = "";
@@ -29,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT username, password, FROM doctor_office WHERE username = :username";
+        $sql = "SELECT `username`, `password` FROM `doctor_office` WHERE `username` = :username";
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(':username', $param_username, PDO::PARAM_STR);
@@ -47,21 +48,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             /* Password is correct, so start a new session and
                             save the username to the session */
                             session_start();
-                            $_SESSION['username'] = $username;      
-                            echo $username;
-                            echo $username;
-                            echo $username;
-                            echo $username;
+                            $_SESSION['username'] = $username;
                             welcome();
                             //header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';
+                            echo $password_err;
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
                     $username_err = 'No account found with that username.';
+                    echo $username_err;
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -77,12 +76,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 
 function welcome() {
-    // Initialize the session
-    //session_start();
+    $returnVal = array('username', $_SESSION['username']);
+    echo json_encode($returnVal);
     
     // If session variable is not set it will redirect to login page
     if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-        header("location: login.php");
+        header("location: error.php");
     exit;
     }
 }
